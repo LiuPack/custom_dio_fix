@@ -1,6 +1,6 @@
 # custom_dio_fix
 
-基于custom_dio适配新版 Flutter 的网络请求插件
+基于[custom_dio](https://github.com/hatemragab/custom_dio)适配新版 Flutter 的网络请求插件
 
 ## Getting Started
 
