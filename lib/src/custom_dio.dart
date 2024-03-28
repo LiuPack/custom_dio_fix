@@ -1,9 +1,10 @@
 import 'dart:io';
-import 'dart:typed_data';
 
+import 'package:custom_dio_fix/src/request_method.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter_pretty_dio_logger/flutter_pretty_dio_logger.dart';
 import 'package:path/path.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import 'custom_dio_exception.dart';
 import 'custom_dio_options.dart';
@@ -34,8 +35,11 @@ class CustomDio {
           requestHeader: true,
           requestBody: true,
           responseBody: true,
+          queryParameters: true,
+          logPrint: debugPrint,
           error: true,
-          maxWidth: 100,
+          canShowLog: kDebugMode,
+          convertFormData: true,
         ));
       }
     }
@@ -126,11 +130,11 @@ class CustomDio {
       CancelToken? cancelToken}) async {
     final mapOfData = <String, dynamic>{};
     for (final file in filesModel) {
-      final _file = File(file.filePath);
-      final fileName = basename(_file.path);
+      final nextFile = File(file.filePath);
+      final fileName = basename(nextFile.path);
       mapOfData.addAll({
         file.fileFiledName: await MultipartFile.fromFile(
-          _file.path,
+          nextFile.path,
           filename: fileName,
         ),
       });
@@ -149,7 +153,7 @@ class CustomDio {
 
   /// send any type of request GET POST PUT PATCH DELETE DOWNLOAD
   Future<Response> send(
-      {required String reqMethod,
+      {required RequestMethod reqMethod,
       required String path,
       Function(int count, int total)? onSendProgress,
       Function(int count, int total)? onReceiveProgress,
@@ -159,64 +163,64 @@ class CustomDio {
       String? saveDirPath}) async {
     late Response res;
 
-    final _body = {}..addAll(body);
-    final _query = {}..addAll(query);
+    final nextBody = {}..addAll(body);
+    final nextQuery = {}..addAll(query);
 
     try {
-      switch (reqMethod.toUpperCase()) {
-        case 'GET':
+      switch (reqMethod) {
+        case RequestMethod.get:
           res = await _dio.get(
             path,
             cancelToken: cancelToken,
-            queryParameters: _query.cast(),
+            queryParameters: nextQuery.cast(),
           );
           break;
-        case 'POST':
+        case RequestMethod.post:
           res = await _dio.post(
             path,
-            data: _body.cast(),
+            data: nextBody.cast(),
             onReceiveProgress: onReceiveProgress,
             onSendProgress: onSendProgress,
             cancelToken: cancelToken,
-            queryParameters: _query.cast(),
+            queryParameters: nextQuery.cast(),
           );
           break;
-        case 'PUT':
+        case RequestMethod.put:
           res = await _dio.put(
             path,
-            data: _body.cast(),
+            data: nextBody.cast(),
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
             cancelToken: cancelToken,
-            queryParameters: _query.cast(),
+            queryParameters: nextQuery.cast(),
           );
           break;
-        case 'PATCH':
+        case RequestMethod.patch:
           res = await _dio.patch(
             path,
-            data: _body.cast(),
+            data: nextBody.cast(),
             onSendProgress: onSendProgress,
             onReceiveProgress: onReceiveProgress,
             cancelToken: cancelToken,
-            queryParameters: _query.cast(),
+            queryParameters: nextQuery.cast(),
           );
           break;
-        case 'DELETE':
+        case RequestMethod.delete:
           res = await _dio.delete(
             path,
-            data: _body.cast(),
+            data: nextBody.cast(),
             cancelToken: cancelToken,
-            queryParameters: _query.cast(),
+            queryParameters: nextQuery.cast(),
           );
           break;
 
-        case 'DOWNLOAD':
+        case RequestMethod.download:
           res = await _dio.download(
             path,
             saveDirPath,
             cancelToken: cancelToken,
             onReceiveProgress: onReceiveProgress,
-            queryParameters: _query.cast(),
+            queryParameters: nextQuery.cast(),
           );
 
           break;

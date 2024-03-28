@@ -146,6 +146,14 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.0.17"
+  flutter_pretty_dio_logger:
+    dependency: transitive
+    description:
+      name: flutter_pretty_dio_logger
+      sha256: cd0b895d8609284562cbbe1f5c82aa85ca00cf613d493f1e25b64d9c06b2031e
+      url: "https://pub.flutter-io.cn"
+    source: hosted
+    version: "3.0.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -334,14 +342,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "2.1.8"
-  pretty_dio_logger:
-    dependency: transitive
-    description:
-      name: pretty_dio_logger
-      sha256: "00b80053063935cf9a6190da344c5373b9d0e92da4c944c878ff2fbef0ef6dc2"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.3.1"
   process:
     dependency: transitive
     description:

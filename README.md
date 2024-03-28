@@ -21,7 +21,7 @@ start init before you send any request
 ```
   try {
   final data =  await CustomDio()
-        .send(reqMethod: "post", path: "user/login", body: {"email": "email"});
+        .send(reqMethod: RequestMethod.post, path: "user/login", body: {"email": "email"});
   } catch (err) {
     print(err.toString());
   }
@@ -32,7 +32,7 @@ start init before you send any request
 ```
   try {
    final data = await CustomDio()
-        .send(reqMethod: "get", path: "user/login", query: {"search": "email"});
+        .send(reqMethod: RequestMethod.get, path: "user/login", query: {"search": "email"});
   } catch (err) {
     print(err.toString());
   }
@@ -80,7 +80,7 @@ start init before you send any request
   Future delete() async {
     try {
       final data =
-      await CustomDio().send(reqMethod: "delete", path: "dio-test/1");
+      await CustomDio().send(reqMethod: RequestMethod.delete, path: "dio-test/1");
       dLog(data.data.toString());
     } catch (err) {
       
@@ -93,7 +93,7 @@ start init before you send any request
 ```  Future getOne() async {
     try {
       final data =
-      await CustomDio().send(reqMethod: "get", path: "dio-test/154");
+      await CustomDio().send(reqMethod: RequestMethod.get, path: "dio-test/154");
       dLog(data.data.toString());
     } catch (err) {
     
@@ -107,7 +107,7 @@ start init before you send any request
   Future update() async {
     try {
       final data = await CustomDio().send(
-          reqMethod: "patch",
+          reqMethod: RequestMethod.patch,
           path: "dio-test",
           body: {"content": "update content"});
       dLog(data.data.toString());

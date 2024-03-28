@@ -64,7 +64,8 @@ class _TestPageState extends State<TestPage> {
 
   Future getAll() async {
     try {
-      final data = await CustomDio().send(reqMethod: "get", path: "dio-test");
+      final data = await CustomDio()
+          .send(reqMethod: RequestMethod.get, path: "dio-test");
       dLog(data.data.toString());
     } catch (err) {
       dErrorLog(err.toString());
@@ -74,7 +75,7 @@ class _TestPageState extends State<TestPage> {
   Future post() async {
     try {
       final data = await CustomDio().send(
-          reqMethod: "post",
+          reqMethod: RequestMethod.post,
           path: "dio-test",
           body: {"content": "post content"});
       dLog(data.data.toString());
@@ -85,8 +86,8 @@ class _TestPageState extends State<TestPage> {
 
   Future getOne() async {
     try {
-      final data =
-          await CustomDio().send(reqMethod: "get", path: "dio-test/154");
+      final data = await CustomDio()
+          .send(reqMethod: RequestMethod.get, path: "dio-test/154");
       dLog(data.data.toString());
     } catch (err) {
       dErrorLog(err.toString());
@@ -95,8 +96,8 @@ class _TestPageState extends State<TestPage> {
 
   Future delete() async {
     try {
-      final data =
-          await CustomDio().send(reqMethod: "delete", path: "dio-test/1");
+      final data = await CustomDio()
+          .send(reqMethod: RequestMethod.delete, path: "dio-test/1");
       dLog(data.data.toString());
     } catch (err) {
       dErrorLog(err.toString());
@@ -106,7 +107,7 @@ class _TestPageState extends State<TestPage> {
   Future getByFilter() async {
     try {
       final data = await CustomDio().send(
-          reqMethod: "get",
+          reqMethod: RequestMethod.get,
           path: "dio-test/filter",
           query: {"query": "query of get by filter"});
       dLog(data.data.toString());
@@ -118,7 +119,7 @@ class _TestPageState extends State<TestPage> {
   Future update() async {
     try {
       final data = await CustomDio().send(
-          reqMethod: "patch",
+          reqMethod: RequestMethod.patch,
           path: "dio-test",
           body: {"content": "update content"});
       dLog(data.data.toString());
