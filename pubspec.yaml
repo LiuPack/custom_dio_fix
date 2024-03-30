@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  dio: ^5.4.2
+  dio: ^5.4.2+1
   path: ^1.9.0
   flutter_pretty_dio_logger: ^3.0.0
 
