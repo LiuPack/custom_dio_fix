@@ -2,7 +2,8 @@ name: custom_dio_fix_example
 description: "Demonstrates how to use the custom_dio_fix plugin."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
+version: 1.0.0
 
 environment:
   sdk: '>=3.3.2 <4.0.0'
